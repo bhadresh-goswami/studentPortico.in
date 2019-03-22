@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="91c092936970433397f288ff1f864ed4" Name="Diagram1">
+        <EntityTypeShape EntityType="dbStudentModel.adminMaster" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentModel.assignmentMaster" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentModel.chatmaster" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentModel.exammaster" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentModel.facultymaster" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentModel.feedbackmaster" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentModel.studentMaster" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentModel.CityMaster" Width="1.5" PointX="5.25" PointY="7" />
+        <EntityTypeShape EntityType="dbStudentModel.CountryMaster" Width="1.5" PointX="0.75" PointY="7.125" />
+        <EntityTypeShape EntityType="dbStudentModel.StateMaster" Width="1.5" PointX="3" PointY="6.875" />
+        <AssociationConnector Association="dbStudentModel.FK__CityMaste__RefSt__2D27B809" />
+        <AssociationConnector Association="dbStudentModel.FK__StateMast__RefCo__29572725" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

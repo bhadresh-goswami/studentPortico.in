@@ -1,0 +1,449 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbStudentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="adminMaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" />
+          <Property Name="password" Type="varchar" MaxLength="15" />
+          <Property Name="emailid" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="assignmentMaster">
+          <Key>
+            <PropertyRef Name="aid" />
+          </Key>
+          <Property Name="aid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adate" Type="date" />
+          <Property Name="aurl" Type="varchar" MaxLength="100" />
+          <Property Name="subjectname" Type="varchar" MaxLength="100" />
+          <Property Name="description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="chatmaster">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="cid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sendername" Type="varchar" MaxLength="100" />
+          <Property Name="recivername" Type="varchar" MaxLength="100" />
+          <Property Name="message" Type="varchar" MaxLength="200" />
+          <Property Name="mdate" Type="date" />
+          <Property Name="mtime" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="CityMaster">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="RefStateId" Type="int" Nullable="false" />
+          <Property Name="IsCityEnabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CountryMaster">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="IsCountryEnabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="exammaster">
+          <Key>
+            <PropertyRef Name="eid" />
+          </Key>
+          <Property Name="eid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ename" Type="varchar" MaxLength="100" />
+          <Property Name="edate" Type="date" />
+          <Property Name="subjectname" Type="varchar" MaxLength="100" />
+          <Property Name="egroup" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="facultymaster">
+          <Key>
+            <PropertyRef Name="facid" />
+          </Key>
+          <Property Name="facid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="facname" Type="varchar" MaxLength="20" />
+          <Property Name="emailid" Type="varchar" MaxLength="100" />
+          <Property Name="password" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="feedbackmaster">
+          <Key>
+            <PropertyRef Name="fid" />
+          </Key>
+          <Property Name="fid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fdesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="fdate" Type="date" Nullable="false" />
+          <Property Name="fitme" Type="time" Precision="7" Nullable="false" />
+          <Property Name="femailid" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StateMaster">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="RefCountryId" Type="int" Nullable="false" />
+          <Property Name="IsStateEnabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="studentMaster">
+          <Key>
+            <PropertyRef Name="sid" />
+          </Key>
+          <Property Name="sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sname" Type="varchar" MaxLength="20" />
+          <Property Name="fname" Type="varchar" MaxLength="20" />
+          <Property Name="lname" Type="varchar" MaxLength="20" />
+          <Property Name="emailid" Type="varchar" MaxLength="100" />
+          <Property Name="password" Type="varchar" MaxLength="20" />
+          <Property Name="gender" Type="varchar" MaxLength="10" />
+          <Property Name="image" Type="varchar" MaxLength="50" />
+          <Property Name="college" Type="varchar" MaxLength="100" />
+          <Property Name="country" Type="varchar" MaxLength="40" />
+          <Property Name="state" Type="varchar" MaxLength="40" />
+          <Property Name="city" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <Association Name="FK__CityMaste__RefSt__2D27B809">
+          <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="1" />
+          <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateMaster">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="CityMaster">
+              <PropertyRef Name="RefStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StateMast__RefCo__29572725">
+          <End Role="CountryMaster" Type="Self.CountryMaster" Multiplicity="1" />
+          <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryMaster">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="StateMaster">
+              <PropertyRef Name="RefCountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbStudentModelStoreContainer">
+          <EntitySet Name="adminMaster" EntityType="Self.adminMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="assignmentMaster" EntityType="Self.assignmentMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chatmaster" EntityType="Self.chatmaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CityMaster" EntityType="Self.CityMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CountryMaster" EntityType="Self.CountryMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="exammaster" EntityType="Self.exammaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="facultymaster" EntityType="Self.facultymaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="feedbackmaster" EntityType="Self.feedbackmaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StateMaster" EntityType="Self.StateMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="studentMaster" EntityType="Self.studentMaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CityMaste__RefSt__2D27B809" Association="Self.FK__CityMaste__RefSt__2D27B809">
+            <End Role="StateMaster" EntitySet="StateMaster" />
+            <End Role="CityMaster" EntitySet="CityMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StateMast__RefCo__29572725" Association="Self.FK__StateMast__RefCo__29572725">
+            <End Role="CountryMaster" EntitySet="CountryMaster" />
+            <End Role="StateMaster" EntitySet="StateMaster" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbStudentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="adminMaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="emailid" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="assignmentMaster">
+          <Key>
+            <PropertyRef Name="aid" />
+          </Key>
+          <Property Name="aid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adate" Type="DateTime" Precision="0" />
+          <Property Name="aurl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="subjectname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="chatmaster">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="cid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sendername" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="recivername" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="message" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="mdate" Type="DateTime" Precision="0" />
+          <Property Name="mtime" Type="Time" Precision="7" />
+        </EntityType>
+        <EntityType Name="exammaster">
+          <Key>
+            <PropertyRef Name="eid" />
+          </Key>
+          <Property Name="eid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="edate" Type="DateTime" Precision="0" />
+          <Property Name="subjectname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="egroup" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="facultymaster">
+          <Key>
+            <PropertyRef Name="facid" />
+          </Key>
+          <Property Name="facid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="facname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="emailid" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="feedbackmaster">
+          <Key>
+            <PropertyRef Name="fid" />
+          </Key>
+          <Property Name="fid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fdesc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fitme" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="femailid" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="studentMaster">
+          <Key>
+            <PropertyRef Name="sid" />
+          </Key>
+          <Property Name="sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="lname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="emailid" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="college" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="dbStudentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="adminMasters" EntityType="Self.adminMaster" />
+          <EntitySet Name="assignmentMasters" EntityType="Self.assignmentMaster" />
+          <EntitySet Name="chatmasters" EntityType="Self.chatmaster" />
+          <EntitySet Name="exammasters" EntityType="Self.exammaster" />
+          <EntitySet Name="facultymasters" EntityType="Self.facultymaster" />
+          <EntitySet Name="feedbackmasters" EntityType="Self.feedbackmaster" />
+          <EntitySet Name="studentMasters" EntityType="Self.studentMaster" />
+          <EntitySet Name="CityMasters" EntityType="dbStudentModel.CityMaster" />
+          <EntitySet Name="CountryMasters" EntityType="dbStudentModel.CountryMaster" />
+          <EntitySet Name="StateMasters" EntityType="dbStudentModel.StateMaster" />
+          <AssociationSet Name="FK__CityMaste__RefSt__2D27B809" Association="dbStudentModel.FK__CityMaste__RefSt__2D27B809">
+            <End Role="StateMaster" EntitySet="StateMasters" />
+            <End Role="CityMaster" EntitySet="CityMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StateMast__RefCo__29572725" Association="dbStudentModel.FK__StateMast__RefCo__29572725">
+            <End Role="CountryMaster" EntitySet="CountryMasters" />
+            <End Role="StateMaster" EntitySet="StateMasters" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CityMaster">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="RefStateId" Type="Int32" Nullable="false" />
+          <Property Name="IsCityEnabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="StateMaster" Relationship="dbStudentModel.FK__CityMaste__RefSt__2D27B809" FromRole="CityMaster" ToRole="StateMaster" />
+        </EntityType>
+        <EntityType Name="CountryMaster">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IsCountryEnabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="StateMasters" Relationship="dbStudentModel.FK__StateMast__RefCo__29572725" FromRole="CountryMaster" ToRole="StateMaster" />
+        </EntityType>
+        <EntityType Name="StateMaster">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="RefCountryId" Type="Int32" Nullable="false" />
+          <Property Name="IsStateEnabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CityMasters" Relationship="dbStudentModel.FK__CityMaste__RefSt__2D27B809" FromRole="StateMaster" ToRole="CityMaster" />
+          <NavigationProperty Name="CountryMaster" Relationship="dbStudentModel.FK__StateMast__RefCo__29572725" FromRole="StateMaster" ToRole="CountryMaster" />
+        </EntityType>
+        <Association Name="FK__CityMaste__RefSt__2D27B809">
+          <End Type="dbStudentModel.StateMaster" Role="StateMaster" Multiplicity="1" />
+          <End Type="dbStudentModel.CityMaster" Role="CityMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateMaster">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="CityMaster">
+              <PropertyRef Name="RefStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StateMast__RefCo__29572725">
+          <End Type="dbStudentModel.CountryMaster" Role="CountryMaster" Multiplicity="1" />
+          <End Type="dbStudentModel.StateMaster" Role="StateMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryMaster">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="StateMaster">
+              <PropertyRef Name="RefCountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbStudentModelStoreContainer" CdmEntityContainer="dbStudentEntities">
+          <EntitySetMapping Name="adminMasters">
+            <EntityTypeMapping TypeName="dbStudentModel.adminMaster">
+              <MappingFragment StoreEntitySet="adminMaster">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="emailid" ColumnName="emailid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="assignmentMasters">
+            <EntityTypeMapping TypeName="dbStudentModel.assignmentMaster">
+              <MappingFragment StoreEntitySet="assignmentMaster">
+                <ScalarProperty Name="aid" ColumnName="aid" />
+                <ScalarProperty Name="adate" ColumnName="adate" />
+                <ScalarProperty Name="aurl" ColumnName="aurl" />
+                <ScalarProperty Name="subjectname" ColumnName="subjectname" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chatmasters">
+            <EntityTypeMapping TypeName="dbStudentModel.chatmaster">
+              <MappingFragment StoreEntitySet="chatmaster">
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="sendername" ColumnName="sendername" />
+                <ScalarProperty Name="recivername" ColumnName="recivername" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="mdate" ColumnName="mdate" />
+                <ScalarProperty Name="mtime" ColumnName="mtime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="exammasters">
+            <EntityTypeMapping TypeName="dbStudentModel.exammaster">
+              <MappingFragment StoreEntitySet="exammaster">
+                <ScalarProperty Name="eid" ColumnName="eid" />
+                <ScalarProperty Name="ename" ColumnName="ename" />
+                <ScalarProperty Name="edate" ColumnName="edate" />
+                <ScalarProperty Name="subjectname" ColumnName="subjectname" />
+                <ScalarProperty Name="egroup" ColumnName="egroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="facultymasters">
+            <EntityTypeMapping TypeName="dbStudentModel.facultymaster">
+              <MappingFragment StoreEntitySet="facultymaster">
+                <ScalarProperty Name="facid" ColumnName="facid" />
+                <ScalarProperty Name="facname" ColumnName="facname" />
+                <ScalarProperty Name="emailid" ColumnName="emailid" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="feedbackmasters">
+            <EntityTypeMapping TypeName="dbStudentModel.feedbackmaster">
+              <MappingFragment StoreEntitySet="feedbackmaster">
+                <ScalarProperty Name="fid" ColumnName="fid" />
+                <ScalarProperty Name="fdesc" ColumnName="fdesc" />
+                <ScalarProperty Name="fdate" ColumnName="fdate" />
+                <ScalarProperty Name="fitme" ColumnName="fitme" />
+                <ScalarProperty Name="femailid" ColumnName="femailid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="studentMasters">
+            <EntityTypeMapping TypeName="dbStudentModel.studentMaster">
+              <MappingFragment StoreEntitySet="studentMaster">
+                <ScalarProperty Name="sid" ColumnName="sid" />
+                <ScalarProperty Name="sname" ColumnName="sname" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="emailid" ColumnName="emailid" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="college" ColumnName="college" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="city" ColumnName="city" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CityMasters">
+            <EntityTypeMapping TypeName="dbStudentModel.CityMaster">
+              <MappingFragment StoreEntitySet="CityMaster">
+                <ScalarProperty Name="IsCityEnabled" ColumnName="IsCityEnabled" />
+                <ScalarProperty Name="RefStateId" ColumnName="RefStateId" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CountryMasters">
+            <EntityTypeMapping TypeName="dbStudentModel.CountryMaster">
+              <MappingFragment StoreEntitySet="CountryMaster">
+                <ScalarProperty Name="IsCountryEnabled" ColumnName="IsCountryEnabled" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateMasters">
+            <EntityTypeMapping TypeName="dbStudentModel.StateMaster">
+              <MappingFragment StoreEntitySet="StateMaster">
+                <ScalarProperty Name="IsStateEnabled" ColumnName="IsStateEnabled" />
+                <ScalarProperty Name="RefCountryId" ColumnName="RefCountryId" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

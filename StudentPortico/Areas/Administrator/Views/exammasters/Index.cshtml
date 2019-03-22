@@ -1,0 +1,52 @@
+﻿@model IEnumerable<StudentPortico.Areas.Administrator.Models.exammaster>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_adminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ename)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.edate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subjectname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.egroup)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ename)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.edate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.subjectname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.egroup)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.eid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.eid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.eid })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_adminLayout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h2>Country Manage</h2>
+
+        <button type="button" class="btn btn-info" onclick="saveData()"><i class="glyphicon glyphicon-plus"></i> Add New</button>
+
+
+        @Html.Partial("_CountryForm")
+
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>
+                        Country Name
+                    </th>
+                    <th>
+                        Country Is Enabled?
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+
+            </thead>
+            <tbody id="countryList">
+
+            </tbody>
+        </table>
+
+
+
+        <script>
+            function loadData() {
+
+
+                $.getJSON("http://localhost:54701/dashboard/CountryManage/getcountry", null
+                    , function (data) {
+                        var listOfCountry = ``;
+                        //alert(data);
+                        $.each(data, function (k, v) {
+                            //alert(v.CountryName);
+
+                            listOfCountry += `<tr>`;
+                            listOfCountry += `<td>`;
+                            listOfCountry += `${v.CountryName}`;
+                            listOfCountry += `</td>`;
+                            listOfCountry += `<td>`;
+                            listOfCountry += `${v.IsCountryEnabled}`;
+                            listOfCountry += `</td>`;
+                            listOfCountry += `<td>`;
+                            listOfCountry += `<button class="btn btn-pinterest" onclick='ShowData("${v.CountryName}","${v.IsCountryEnabled}","${v.CountryId}")'>View</button>`;
+                            listOfCountry += `</td>`;
+                            listOfCountry += `</tr>`;
+
+                        });
+
+                        $("#countryList").html(listOfCountry);
+                    })
+
+
+            }
+
+            loadData();
+            function ShowData(cname, isenb, id) {
+                //alert(cname + "," + isenb + "," + id);
+                $("#myModal").modal("show");
+                $(".save").hide();
+                $(".edit").show();
+                $("#countryId").val(id);
+                $("#CountryName").val(cname);
+                $("#CountryIsEnabled").val(isenb);
+            }
+            function saveData() {
+                //alert(cname + "," + isenb + "," + id);
+                $("#myModal").modal("show");
+                $(".save").show();
+                $(".edit").hide();
+
+
+
+                $("#CountryName").val("");
+                $("#CountryIsEnabled").val("");
+            }
+        </script>
+        <!-- /.panel -->
+        <!-- /.panel -->
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-8 -->
+    <!-- /.col-lg-4 -->
+</div>
+
+

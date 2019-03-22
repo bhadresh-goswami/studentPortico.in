@@ -1,0 +1,51 @@
+﻿@model StudentPortico.Areas.Administrator.Models.assignmentMaster
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_adminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>assignmentMaster</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.adate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aurl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aurl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subjectname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subjectname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.aid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,48 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Student Portico: Admin Login</title>
+    @Styles.Render("~/adminLayout/css")
+
+
+
+</head>
+<body>
+    <div>
+        @Html.Partial("_showMsgErr")
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                @using (Html.BeginForm("login", "authentication", FormMethod.Post, new { @class = "form-horizontal" }))
+                {<br /><br />
+                    <h3 class="sample-header text-center">Admin Login</h3>
+                    <div class="form-group">
+                        <label class="control-label">Enter EmailId:</label>
+                        <input type="email" class="form-control" name="emailid" id="emailid" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Enter Password:</label>
+                        <input type="password" class="form-control" name="password" id="password" required />
+                    </div>
+                    <div class="form-group text-right">
+                        <button class="btn btn-primary"><i class="glyphicon glyphicon-log-in"></i> Login!</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/adminLayout/js")
+
+</body>
+</html>

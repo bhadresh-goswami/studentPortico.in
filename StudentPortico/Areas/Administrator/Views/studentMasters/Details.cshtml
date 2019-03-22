@@ -1,0 +1,119 @@
+﻿@model StudentPortico.Areas.Administrator.Models.studentMaster
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_adminLayout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Add New Faculty
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div>
+                    <h4>studentMaster</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.sname)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.sname)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.fname)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.fname)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.lname)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.lname)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.emailid)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.emailid)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.password)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.password)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.gender)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.gender)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.image)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.image)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.college)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.college)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.country)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.country)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.state)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.state)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.city)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.city)
+                        </dd>
+
+                    </dl>
+                </div>
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.sid }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
